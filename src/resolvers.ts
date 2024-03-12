@@ -80,6 +80,9 @@ export const resolvers: Resolvers = {
         context.dataSources.ghibliAPI.getFilmBy(filmId)
       );
     },
+    eyeColor: ({ eye_color }, args, context, info) => {
+      return eye_color;
+    },
   },
   Film: {
     people: ({ people }, args, context, info) => {
