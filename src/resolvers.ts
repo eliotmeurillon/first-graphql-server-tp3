@@ -74,23 +74,18 @@ export const resolvers: Resolvers = {
       ];
     },
   },
-  Film: {
-    people: (parent, args, context, info) => {
-      return parent.people.map((id: string) =>
-        context.dataSources.ghibliAPI.getPersonBy(id)
+  People: {
+    films: ({ films }, args, context, info) => {
+      return films.map((filmId) =>
+        context.dataSources.ghibliAPI.getFilmBy(filmId)
       );
     },
   },
-  Person: {
-    films: (parent, args, context, info) => {
-      return context.dataSources.ghibliAPI
-        .getFilms()
-        .then((films) =>
-          films.filter((film) => film.people.includes(parent.id))
-        );
-    },
-    eyeColor: ({ eye_color }, args, context, info) => {
-      return eye_color;
+  Film: {
+    people: ({ people }, args, context, info) => {
+      return people.map((personId) =>
+        context.dataSources.ghibliAPI.getPersonBy(personId)
+      );
     },
   },
 };

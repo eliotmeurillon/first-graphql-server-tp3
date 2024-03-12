@@ -1,5 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { TrackModel, AuthorModel, FilmModel, PersonModel } from './models';
+import { TrackModel, AuthorModel, FilmModel, PeopleModel } from './models';
 import { DataSourceContext } from './context';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -41,14 +41,14 @@ export type Doctor = {
 export type Film = {
   __typename?: 'Film';
   id: Scalars['ID']['output'];
-  people?: Maybe<Array<Person>>;
+  people: Array<Maybe<People>>;
   title: Scalars['String']['output'];
 };
 
-export type Person = {
-  __typename?: 'Person';
+export type People = {
+  __typename?: 'People';
   eyeColor: Scalars['String']['output'];
-  films: Array<Film>;
+  films: Array<Maybe<Film>>;
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
 };
@@ -60,7 +60,7 @@ export type Query = {
   doctor?: Maybe<Doctor>;
   doctors?: Maybe<Array<Maybe<Doctor>>>;
   getFilms: Array<Film>;
-  getPeople: Array<Person>;
+  getPeople: Array<People>;
   getTracks: Array<Track>;
   multiply: Scalars['Float']['output'];
 };
@@ -184,7 +184,7 @@ export type ResolversTypes = {
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
-  Person: ResolverTypeWrapper<PersonModel>;
+  People: ResolverTypeWrapper<PeopleModel>;
   Query: ResolverTypeWrapper<{}>;
   Speciality: Speciality;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
@@ -201,7 +201,7 @@ export type ResolversParentTypes = {
   Float: Scalars['Float']['output'];
   ID: Scalars['ID']['output'];
   Int: Scalars['Int']['output'];
-  Person: PersonModel;
+  People: PeopleModel;
   Query: {};
   String: Scalars['String']['output'];
   Track: TrackModel;
@@ -229,14 +229,14 @@ export type DoctorResolvers<ContextType = DataSourceContext, ParentType extends 
 
 export type FilmResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Film'] = ResolversParentTypes['Film']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  people?: Resolver<Maybe<Array<ResolversTypes['Person']>>, ParentType, ContextType>;
+  people?: Resolver<Array<Maybe<ResolversTypes['People']>>, ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
-export type PersonResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Person'] = ResolversParentTypes['Person']> = {
+export type PeopleResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['People'] = ResolversParentTypes['People']> = {
   eyeColor?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  films?: Resolver<Array<ResolversTypes['Film']>, ParentType, ContextType>;
+  films?: Resolver<Array<Maybe<ResolversTypes['Film']>>, ParentType, ContextType>;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
@@ -248,7 +248,7 @@ export type QueryResolvers<ContextType = DataSourceContext, ParentType extends R
   doctor?: Resolver<Maybe<ResolversTypes['Doctor']>, ParentType, ContextType, RequireFields<QueryDoctorArgs, 'id'>>;
   doctors?: Resolver<Maybe<Array<Maybe<ResolversTypes['Doctor']>>>, ParentType, ContextType, Partial<QueryDoctorsArgs>>;
   getFilms?: Resolver<Array<ResolversTypes['Film']>, ParentType, ContextType>;
-  getPeople?: Resolver<Array<ResolversTypes['Person']>, ParentType, ContextType>;
+  getPeople?: Resolver<Array<ResolversTypes['People']>, ParentType, ContextType>;
   getTracks?: Resolver<Array<ResolversTypes['Track']>, ParentType, ContextType>;
   multiply?: Resolver<ResolversTypes['Float'], ParentType, ContextType, RequireFields<QueryMultiplyArgs, 'number1' | 'number2'>>;
 };
@@ -266,7 +266,7 @@ export type Resolvers<ContextType = DataSourceContext> = {
   Author?: AuthorResolvers<ContextType>;
   Doctor?: DoctorResolvers<ContextType>;
   Film?: FilmResolvers<ContextType>;
-  Person?: PersonResolvers<ContextType>;
+  People?: PeopleResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
   Track?: TrackResolvers<ContextType>;
 };

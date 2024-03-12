@@ -28,14 +28,14 @@ export const typeDefs = gql`
   type Film {
     id: ID!
     title: String!
-    people: [Person!]
+    people: [People]!
   }
 
-  type Person {
+  type People {
     id: ID!
     name: String!
     eyeColor: String!
-    films: [Film!]!
+    films: [Film]!
   }
 
   type Query {
@@ -46,7 +46,7 @@ export const typeDefs = gql`
     closestColor(color: String!): String!
     getTracks: [Track!]!
     getFilms: [Film!]!
-    getPeople: [Person!]!
+    getPeople: [People!]!
   }
 
   enum Speciality {

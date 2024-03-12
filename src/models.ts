@@ -20,7 +20,7 @@ export type FilmModel = {
   people: string[];
 };
 
-export type PersonModel = {
+export type PeopleModel = {
   id: string;
   eye_color: string;
   name: string;

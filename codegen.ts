@@ -11,7 +11,7 @@ const config: CodegenConfig = {
           Track: "./models#TrackModel",
           Author: "./models#AuthorModel",
           Film: "./models#FilmModel",
-          Person: "./models#PersonModel",
+          People: "./models#PeopleModel",
         },
       },
     },
