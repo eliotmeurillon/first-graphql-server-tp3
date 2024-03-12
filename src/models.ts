@@ -19,3 +19,9 @@ export type FilmModel = {
   title: string;
   people: string[];
 };
+
+export type PersonModel = {
+  id: string;
+  name: string;
+  films: string[];
+};

@@ -55,6 +55,9 @@ export const resolvers: Resolvers = {
     getFilms: (parent, args, context, info) => {
       return context.dataSources.ghibliAPI.getFilms();
     },
+    getPeople: (parent, args, context, info) => {
+      return context.dataSources.ghibliAPI.getPeople();
+    },
   },
 
   Track: {
@@ -69,6 +72,13 @@ export const resolvers: Resolvers = {
           zipCode: `${parent.id}000`,
         },
       ];
+    },
+  },
+  Film: {
+    people: ({ people }, args, context, info) => {
+      return people.map((id: string) =>
+        context.dataSources.ghibliAPI.getPersonBy(id)
+      );
     },
   },
 };
