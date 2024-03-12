@@ -76,16 +76,18 @@ export const resolvers: Resolvers = {
   },
   Film: {
     people: (parent, args, context, info) => {
-      return null;
+      return parent.people.map((id: string) =>
+        context.dataSources.ghibliAPI.getPersonBy(id)
+      );
     },
   },
   Person: {
     films: (parent, args, context, info) => {
-      console.log(parent);
-      return null;
-      // return films.map((id: string) =>
-      //   context.dataSources.ghibliAPI.getFilmBy(id)
-      // );
+      return context.dataSources.ghibliAPI
+        .getFilms()
+        .then((films) =>
+          films.filter((film) => film.people.includes(parent.id))
+        );
     },
     eyeColor: ({ eye_color }, args, context, info) => {
       return eye_color;
