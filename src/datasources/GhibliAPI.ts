@@ -16,4 +16,7 @@ export class GhibliAPI extends RESTDataSource {
   getFilmBy(id: string) {
     return this.get<FilmModel>(`films/${id}`);
   }
+  getPeopleByUrls(urls: string[]) {
+    return urls.filter((url) => url).map((url) => this.get<PeopleModel>(url));
+  }
 }
