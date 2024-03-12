@@ -1,5 +1,5 @@
 import { GraphQLResolveInfo } from 'graphql';
-import { TrackModel, AuthorModel } from './models';
+import { TrackModel, AuthorModel, FilmModel, PersonModel } from './models';
 import { DataSourceContext } from './context';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
@@ -41,7 +41,7 @@ export type Doctor = {
 export type Film = {
   __typename?: 'Film';
   id: Scalars['ID']['output'];
-  people: Array<Person>;
+  people?: Maybe<Array<Person>>;
   title: Scalars['String']['output'];
 };
 
@@ -180,11 +180,11 @@ export type ResolversTypes = {
   Author: ResolverTypeWrapper<AuthorModel>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
   Doctor: ResolverTypeWrapper<Doctor>;
-  Film: ResolverTypeWrapper<Film>;
+  Film: ResolverTypeWrapper<FilmModel>;
   Float: ResolverTypeWrapper<Scalars['Float']['output']>;
   ID: ResolverTypeWrapper<Scalars['ID']['output']>;
   Int: ResolverTypeWrapper<Scalars['Int']['output']>;
-  Person: ResolverTypeWrapper<Person>;
+  Person: ResolverTypeWrapper<PersonModel>;
   Query: ResolverTypeWrapper<{}>;
   Speciality: Speciality;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
@@ -197,11 +197,11 @@ export type ResolversParentTypes = {
   Author: AuthorModel;
   Boolean: Scalars['Boolean']['output'];
   Doctor: Doctor;
-  Film: Film;
+  Film: FilmModel;
   Float: Scalars['Float']['output'];
   ID: Scalars['ID']['output'];
   Int: Scalars['Int']['output'];
-  Person: Person;
+  Person: PersonModel;
   Query: {};
   String: Scalars['String']['output'];
   Track: TrackModel;
@@ -229,7 +229,7 @@ export type DoctorResolvers<ContextType = DataSourceContext, ParentType extends 
 
 export type FilmResolvers<ContextType = DataSourceContext, ParentType extends ResolversParentTypes['Film'] = ResolversParentTypes['Film']> = {
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
-  people?: Resolver<Array<ResolversTypes['Person']>, ParentType, ContextType>;
+  people?: Resolver<Maybe<Array<ResolversTypes['Person']>>, ParentType, ContextType>;
   title?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };

@@ -75,10 +75,20 @@ export const resolvers: Resolvers = {
     },
   },
   Film: {
-    people: ({ people }, args, context, info) => {
-      return people.map((id: string) =>
-        context.dataSources.ghibliAPI.getPersonBy(id)
-      );
+    people: (parent, args, context, info) => {
+      return null;
+    },
+  },
+  Person: {
+    films: (parent, args, context, info) => {
+      console.log(parent);
+      return null;
+      // return films.map((id: string) =>
+      //   context.dataSources.ghibliAPI.getFilmBy(id)
+      // );
+    },
+    eyeColor: ({ eye_color }, args, context, info) => {
+      return eye_color;
     },
   },
 };
